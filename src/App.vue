@@ -1,26 +1,70 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <div v-bind:id="1">
+      <h2>{{ weather.location.name }}</h2>
+      <p>{{ weather.location.country }}</p>
+      <p>{{ weather.location.latitude }}</p>
+      <p>{{ weather.location.longitude }}</p>
+      <p  >{{ weather.location.timezone }}</p>
+    </div>
+    <div v-bind:id="2">
+      <p>{{ weather.current.temp_c }}</p>
+      <p>{{ weather.current.wind_kph }}</p>
+      <p>{{ weather.current.wind_dir }}</p>
+      <p>{{ weather.current.preasure_mb }}</p>
+      <p>{{ weather.current.precip_mm }}</p>
+      <p>{{ weather.current.humidity }}</p>
+      <p>{{ weather.current.condition }}</p>
+    </div>
+    <div v-for="day in weather.daily" v-bind:key="day.date">
+      <p>{{ day.date }}</p>
+      <p>{{ day.maxtemp_c }}</p>
+      <p>{{ day.mintemp_c }}</p>
+      <p>{{ day.avgtemp_c }}</p>
+      <p>{{ day.maxwind_kph }}</p>
+      <p>{{ day.totalprecip_mm }}</p>
+      <p>{{ day.avghumidity }}</p>
+      <p>{{ day.avghumidity }}</p>
+<!--      <p>{{ day.condition }}</p>-->
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      weather: {
+        location: {},
+        current: {},
+        daily: []
+      },
+    };
+  },
+
+  methods: {
+    async getData() {
+      try {
+        let response = await fetch("http://localhost:8000/main/bialystok");
+        this.weather = await response.json();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+
+  created() {
+    this.getData();
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+h2 {
+  margin: 40px 0 0;
 }
-</style>
+div {
+  display: inline-block;
+  margin: 0 10px;
+}
+  </style>
