@@ -1,5 +1,5 @@
 <template>
-  <div class="current__container">
+  <div v-if="current" class="current__container">
     <h2>OBECNIE</h2>
     <p>{{ current.temp_c }}</p>
     <p>{{ current.wind_kph }}</p>

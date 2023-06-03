@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="cell cell-location-form">
-      <LocationForm></LocationForm>
+      <LocationForm @cityInput="onLocationForm"></LocationForm>
     </div>
     <div class="cell cell-location">
       <LocationItem :location="weather.location"></LocationItem>
@@ -34,22 +34,28 @@ export default {
         type: Object,
         required: true,
       },
+      city: "lodz",
     };
   },
 
   methods: {
-    async getData() {
+    async getData(city) {
       try {
-        let response = await fetch("http://localhost:8000/main/warszawa");
+        let response = await fetch(`http://localhost:8000/main/${city}`);
         this.weather = await response.json();
       } catch (error) {
         console.log(error);
       }
     },
+    onLocationForm(value) {
+      this.city = value;
+      console.log(this.city);
+      this.getData(this.city);
+    },
   },
 
   created() {
-    this.getData();
+    this.getData(this.city);
   },
 };
 </script>

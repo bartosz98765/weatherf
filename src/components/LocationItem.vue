@@ -1,5 +1,5 @@
 <template>
-  <div class="location__container">
+  <div v-if="location" class="location__container">
     <h2>{{ location.name }}</h2>
     <p>{{ location.country }}</p>
     <p>{{ location.latitude }}</p>
