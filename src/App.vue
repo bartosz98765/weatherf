@@ -7,19 +7,10 @@
       <MapItem></MapItem>
     </div>
     <div class="cell cell-current">
-      <h2>Current</h2>
+      <CurrentItem :current="weather.current"></CurrentItem>
     </div>
     <div class="cell cell-daily">Daily</div>
 
-    <!--    <div v-bind:id="2">-->
-    <!--      <p>{{ weather.current.temp_c }}</p>-->
-    <!--      <p>{{ weather.current.wind_kph }}</p>-->
-    <!--      <p>{{ weather.current.wind_dir }}</p>-->
-    <!--      <p>{{ weather.current.preasure_mb }}</p>-->
-    <!--      <p>{{ weather.current.precip_mm }}</p>-->
-    <!--      <p>{{ weather.current.humidity }}</p>-->
-    <!--      <p>{{ weather.current.condition }}</p>-->
-    <!--    </div>-->
     <!--    <div v-for="day in weather.daily" v-bind:key="day.date">-->
     <!--      <p>{{ day.date }}</p>-->
     <!--      <p>{{ day.maxtemp_c }}</p>-->
@@ -37,10 +28,11 @@
 <script>
 import MapItem from "./components/MapItem.vue";
 import LocationItem from "./components/LocationItem.vue";
+import CurrentItem from "./components/CurrentItem.vue";
 
 export default {
   name: "App",
-  components: { MapItem, LocationItem },
+  components: { MapItem, LocationItem, CurrentItem },
   data() {
     return {
       weather: {
