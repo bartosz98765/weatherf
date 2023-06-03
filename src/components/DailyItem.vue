@@ -8,7 +8,7 @@
     <p>{{ day.maxwind_hph }}</p>
     <p>{{ day.totalprecip_mm }}</p>
     <p>{{ day.avghumidity }}</p>
-    <p>{{ day.condition }}</p>
+    <!--    <p>{{ day.condition }}</p>-->
   </div>
 </template>
 

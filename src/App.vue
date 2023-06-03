@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="cell cell-location-form">
+      <LocationForm></LocationForm>
+    </div>
     <div class="cell cell-location">
       <LocationItem :location="weather.location"></LocationItem>
     </div>
@@ -17,13 +20,14 @@
 
 <script>
 import MapItem from "./components/MapItem.vue";
+import LocationForm from "./components/LocationForm.vue";
 import LocationItem from "./components/LocationItem.vue";
 import CurrentItem from "./components/CurrentItem.vue";
 import DailyItem from "./components/DailyItem.vue";
 
 export default {
   name: "App",
-  components: { MapItem, LocationItem, CurrentItem, DailyItem },
+  components: { LocationForm, MapItem, LocationItem, CurrentItem, DailyItem },
   data() {
     return {
       weather: {
@@ -59,7 +63,6 @@ body {
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  height: 100%;
   display: grid;
   grid-template-columns: 100vh;
   grid-auto-rows: 1fr;
@@ -75,22 +78,22 @@ body {
 
 .cell-map {
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .cell-location {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .cell-current {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 .cell-daily {
   grid-column: 1 / 4;
-  grid-row: 1;
+  grid-row: 2;
 }
 
 h2 {
