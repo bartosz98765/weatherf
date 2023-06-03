@@ -1,4 +1,5 @@
 <template>
+  <h2>DNI</h2>
   <div class="daily__container" v-for="day in daily" v-bind:key="day.date">
     <p>{{ day.date }}</p>
     <p>{{ day.maxtemp_c }}</p>
