@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div id="app">
+    <div class="cell cell-map">
+      <MapContainer></MapContainer>
+    </div>
+
     <div v-bind:id="1">
       <h2>{{ weather.location.name }}</h2>
       <p>{{ weather.location.country }}</p>
@@ -25,13 +29,19 @@
       <p>{{ day.totalprecip_mm }}</p>
       <p>{{ day.avghumidity }}</p>
       <p>{{ day.avghumidity }}</p>
-<!--      <p>{{ day.condition }}</p>-->
+      <p>{{ day.condition }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import MapContainer from './components/MapContainer.vue'
+
 export default {
+  name: 'App',
+  components: {
+    MapContainer
+  },
   data() {
     return {
       weather: {
@@ -45,7 +55,7 @@ export default {
   methods: {
     async getData() {
       try {
-        let response = await fetch("http://localhost:8000/main/bialystok");
+        let response = await fetch("http://localhost:8000/main/warszawa");
         this.weather = await response.json();
       } catch (error) {
         console.log(error);
@@ -59,7 +69,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100vh;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .cell {
+    border-radius: 4px;
+    background-color: lightgrey;
+  }
+
+  .cell-map {
+    grid-column: 1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+  }
 h2 {
   margin: 40px 0 0;
 }
@@ -67,4 +103,4 @@ div {
   display: inline-block;
   margin: 0 10px;
 }
-  </style>
+</style>
