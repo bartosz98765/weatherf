@@ -9,19 +9,9 @@
     <div class="cell cell-current">
       <CurrentItem :current="weather.current"></CurrentItem>
     </div>
-    <div class="cell cell-daily">Daily</div>
-
-    <!--    <div v-for="day in weather.daily" v-bind:key="day.date">-->
-    <!--      <p>{{ day.date }}</p>-->
-    <!--      <p>{{ day.maxtemp_c }}</p>-->
-    <!--      <p>{{ day.mintemp_c }}</p>-->
-    <!--      <p>{{ day.avgtemp_c }}</p>-->
-    <!--      <p>{{ day.maxwind_kph }}</p>-->
-    <!--      <p>{{ day.totalprecip_mm }}</p>-->
-    <!--      <p>{{ day.avghumidity }}</p>-->
-    <!--      <p>{{ day.avghumidity }}</p>-->
-    <!--      <p>{{ day.condition }}</p>-->
-    <!--    </div>-->
+    <div class="cell cell-daily">
+      <DailyItem :daily="weather.daily"></DailyItem>
+    </div>
   </div>
 </template>
 
@@ -29,10 +19,11 @@
 import MapItem from "./components/MapItem.vue";
 import LocationItem from "./components/LocationItem.vue";
 import CurrentItem from "./components/CurrentItem.vue";
+import DailyItem from "./components/DailyItem.vue";
 
 export default {
   name: "App",
-  components: { MapItem, LocationItem, CurrentItem },
+  components: { MapItem, LocationItem, CurrentItem, DailyItem },
   data() {
     return {
       weather: {
