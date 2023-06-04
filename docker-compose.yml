@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  front-envoy:
+    build:
+      dockerfile: weather-front
+    volumes:
+      - ./docker-compose.yaml:/etc/docker-compose.yaml
+    networks:
+      - front
+    expose:
+      - "80"
+      - "8001"
+    ports:
+      - "8000:80"
+      - "8001:8001"
+
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: weather-nginx
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - front
+    expose:
+      - "80"
+    ports:
+      - "8081:8081"
+
+
+networks:
+  front: {}
