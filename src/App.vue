@@ -71,35 +71,39 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   display: grid;
   grid-template-columns: 100vh;
-  grid-auto-rows: 1fr;
-  grid-gap: 1rem;
-  padding: 1rem;
+  grid-gap: 3px;
+  padding: 4px;
   box-sizing: border-box;
 }
 
 .cell {
   border-radius: 4px;
-  background-color: lightgrey;
+  background-color: lightblue;
+}
+
+.cell-location-form {
+  grid-column: 1 / 4;
+  grid-row: 1;
 }
 
 .cell-map {
   grid-column: 1;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .cell-location {
   grid-column: 3;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .cell-current {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
 }
 
 .cell-daily {
   grid-column: 1 / 4;
-  grid-row: 2;
+  grid-row: 3;
 }
 
 h2 {
