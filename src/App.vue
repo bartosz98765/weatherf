@@ -7,7 +7,7 @@
       <LocationItem :location="weather.location"></LocationItem>
     </div>
     <div class="cell cell-map">
-      <MapItem></MapItem>
+      <MapItem @getCoordinates="onMapForm"></MapItem>
     </div>
     <div class="cell cell-current">
       <CurrentItem :current="weather.current"></CurrentItem>
@@ -50,6 +50,10 @@ export default {
     onLocationForm(value) {
       this.city = value;
       this.getData(this.city);
+    },
+    onMapForm(value) {
+      const coordinates = value.split(",").reverse().toString();
+      this.getData(coordinates);
     },
   },
 

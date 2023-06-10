@@ -1,6 +1,9 @@
 <template>
-  <div ref="map-root" style="width: 100%; height: 100%"></div>
-  <div id="mouse-position"></div>
+  <div
+    @click="getPosition"
+    ref="map-root"
+    style="width: 100%; height: 100%"
+  ></div>
 </template>
 
 <script>
@@ -12,20 +15,27 @@ import View from "ol/View";
 import { createStringXY } from "ol/coordinate.js";
 import { defaults as defaultControls } from "ol/control.js";
 import "ol/ol.css";
+import { toRaw } from "vue";
 
 export default {
   name: "MapItem",
   components: {},
   props: {},
+  data() {
+    return {
+      mousePositionControl: null,
+      counter: 0,
+    };
+  },
   mounted() {
-    const mousePositionControl = new MousePosition({
+    this.mousePositionControl = new MousePosition({
       coordinateFormat: createStringXY(4),
       projection: "EPSG:4326",
       // className: "custom-mouse-position",
       // target: document.getElementById("mouse-position"),
     });
     new Map({
-      controls: defaultControls().extend([mousePositionControl]),
+      controls: defaultControls().extend([this.mousePositionControl]),
       target: this.$refs["map-root"],
       layers: [
         new TileLayer({
@@ -39,6 +49,12 @@ export default {
         constrainResolution: true,
       }),
     });
+  },
+  methods: {
+    getPosition() {
+      let mousePositionControlRaw = toRaw(this.mousePositionControl);
+      this.$emit("getCoordinates", mousePositionControlRaw.renderedHTML_);
+    },
   },
 };
 </script>
