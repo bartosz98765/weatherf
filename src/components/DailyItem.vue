@@ -8,6 +8,7 @@
     <p>{{ day.maxwind_hph }}</p>
     <p>{{ day.totalprecip_mm }}</p>
     <p>{{ day.avghumidity }}</p>
+    <img src="../assets/64x64/day/113.png" alt="" />
     <!--    <p>{{ day.condition }}</p>-->
   </div>
 </template>
