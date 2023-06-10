@@ -49,7 +49,6 @@ export default {
     },
     onLocationForm(value) {
       this.city = value;
-      console.log(this.city);
       this.getData(this.city);
     },
   },
